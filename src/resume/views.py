@@ -31,14 +31,18 @@ async def get_resume_by_id(request: HttpRequest, resume_id: int) -> ResumeOut:
 
 
 @router.put("/resume/{resume_id}")
-async def update_resume(request: HttpRequest, resume_id: int, resume_schema: ResumeIn) -> dict:
+async def update_resume(
+    request: HttpRequest, resume_id: int, resume_schema: ResumeIn
+) -> dict:
     """Full update a resume."""
     await Resume.objects.filter(id=resume_id).aupdate(**resume_schema.dict())
     return {"success": True}
 
 
 @router.patch("/resume/{resume_id}")
-async def patch_resume(request: HttpRequest, resume_id: int, resume_schema: ResumeIn) -> dict:
+async def patch_resume(
+    request: HttpRequest, resume_id: int, resume_schema: ResumeIn
+) -> dict:
     """Partial update a resume."""
     resume_data = resume_schema.dict(exclude_unset=True)
     await Resume.objects.filter(id=resume_id).aupdate(**resume_data)

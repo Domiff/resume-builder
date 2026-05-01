@@ -8,4 +8,5 @@ def create_api() -> NinjaAPI:
     app.add_router("", router)
     return app
 
+
 api = create_api()
