@@ -7,6 +7,7 @@ class Resume(models.Model):
     email = models.EmailField()
     experience = models.TextField(max_length=200)
     education = models.TextField(max_length=200)
+    s3_url = models.URLField(null=True, blank=True)
 
     class Meta:
         db_table = "resume"
