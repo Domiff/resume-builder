@@ -1,5 +1,4 @@
 from django.template.loader import render_to_string
-from django.utils.safestring import SafeString
 from weasyprint import HTML
 
 from resume.schemas import ResumeIn

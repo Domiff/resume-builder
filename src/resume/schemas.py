@@ -6,7 +6,7 @@ from resume.models import Resume
 class ResumeIn(ModelSchema):
     class Meta:
         model = Resume
-        exclude = ("id",)
+        exclude = ("id", "s3_url")
         fields_optional = "__all__"
 
 
