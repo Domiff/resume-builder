@@ -6,11 +6,11 @@ from weasyprint import HTML
 
 from core.s3 import s3
 from resume.models import Resume
-from resume.schemas import ResumeIn, ResumeOut
+from resume.schemas import ResumeIn
 from resume.repository import Repository
 
 
-resume_repository = Repository(Resume)
+resume_repository: Repository[Resume] = Repository(Resume)
 
 
 class ResumeBuilder:
@@ -55,9 +55,9 @@ class ResumeService:
     @staticmethod
     async def get(resume_id: int | None = None) -> str | list[str]:
         if resume_id:
-            resume = await resume_repository.get(id=resume_id)
+            resume: Resume = await resume_repository.get(id=resume_id)
             return resume.s3_url
-        resumes = await resume_repository.list()
+        resumes: list[Resume] = await resume_repository.list()
         return [resume.s3_url for resume in resumes]
 
 

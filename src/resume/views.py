@@ -18,8 +18,6 @@ async def create_resume(request: HttpRequest, resume_schema: ResumeIn) -> JsonRe
 async def get_all_resumes(request: HttpRequest) -> JsonResponse:
     """Get all resume."""
     urls = await resume_service.get()
-    if not urls:
-        raise Http404("No Resume matches the given query.")
     return JsonResponse(data={"urls": urls}, status=200)
 
 
@@ -27,8 +25,6 @@ async def get_all_resumes(request: HttpRequest) -> JsonResponse:
 async def get_one_resume(request: HttpRequest, resume_id: int) -> JsonResponse:
     """Get a resume by id."""
     url = await resume_service.get(resume_id)
-    if not url:
-        raise Http404("No Resume matches the given query.")
     return JsonResponse(data={"url": url}, status=200)
 
 

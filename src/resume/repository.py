@@ -1,7 +1,7 @@
-from typing import TypeVar, Generic, Type
+from typing import TypeVar, Generic, Type, List
 
 from django.db.models import Model
-from django.shortcuts import aget_object_or_404
+from django.shortcuts import aget_object_or_404, aget_list_or_404
 
 T = TypeVar("T", bound=Model)
 
@@ -13,8 +13,8 @@ class Repository(Generic[T]):
     async def create(self, **kwargs) -> T:
         return await self.model.objects.acreate(**kwargs)
 
-    async def list(self, **kwargs):
-        return [model async for model in self.model.objects.filter(**kwargs)]
+    async def list(self, **kwargs) -> List[T]:
+        return await aget_list_or_404(self.model, **kwargs)
 
     async def get(self, **kwargs) -> T:
         return await aget_object_or_404(self.model, **kwargs)
