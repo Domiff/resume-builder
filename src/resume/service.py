@@ -4,7 +4,7 @@ from asgiref.sync import sync_to_async
 from django.template.loader import render_to_string
 from weasyprint import HTML
 
-from core.s3 import s3
+from core.s3_client import s3
 from resume.models import Resume
 from resume.schemas import ResumeIn
 from resume.repository import Repository
