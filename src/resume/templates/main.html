@@ -4,70 +4,72 @@
   <meta charset="UTF-8">
   <title>{{ title }}</title>
   <style>
-    @page {
-      size: A4;
-      margin: 32px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: "Inter", "Helvetica", Arial, sans-serif;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #2c2c2c;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 4px;
-    }
-
-    h2 {
-      font-size: 16px;
-      margin-top: 24px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-family: "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #2b2d33;
     }
 
     .header {
-      margin-bottom: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #ffffff;
+      padding: 32px 36px 26px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
     }
 
     .contacts {
-      color: #555;
       font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .contacts span {
+      margin-right: 24px;
+    }
+
+    .contacts .label {
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-size: 8px;
+      letter-spacing: 1px;
+      margin-right: 6px;
+    }
+
+    .content {
+      padding: 30px 6px 0;
     }
 
     .section {
-      margin-bottom: 16px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #1e293b;
+      border-left: 3px solid #f59e0b;
+      padding-left: 10px;
+      margin-bottom: 12px;
     }
 
     .section p {
-      margin: 4px 0;
-    }
-
-    .layout {
-      display: flex;
-      gap: 24px;
-    }
-
-    .sidebar {
-      width: 30%;
-    }
-
-    .main {
-      width: 70%;
-    }
-
-    ul {
-      padding-left: 16px;
-      margin: 6px 0;
-    }
-
-    li {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      color: #44474f;
     }
   </style>
 </head>
@@ -75,24 +77,20 @@
   <div class="header">
     <h1>{{ title }}</h1>
     <div class="contacts">
-      <p>{{ phone_number }}</p>
-      <p>{{ email }}</p>
+      <span><span class="label">Phone</span>{{ phone_number }}</span>
+      <span><span class="label">Email</span>{{ email }}</span>
     </div>
   </div>
 
-  <div class="layout">
-    <div class="sidebar">
-      <div class="section">
-        <h2>Education</h2>
-        <p>{{ education }}</p>
-      </div>
+  <div class="content">
+    <div class="section">
+      <h2>Experience</h2>
+      {{ experience|linebreaks }}
     </div>
 
-    <div class="main">
-      <div class="section">
-        <h2>Experience</h2>
-        <p>{{ experience }}</p>
-      </div>
+    <div class="section">
+      <h2>Education</h2>
+      {{ education|linebreaks }}
     </div>
   </div>
 </body>
